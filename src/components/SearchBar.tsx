@@ -32,7 +32,6 @@ const SearchBar: React.FC<Props> = ({ onChange }) => {
 
 const SCInput = styled.div`
   border: 2px solid ${primaryColor};
-  width: 100vw;
   border-radius: 0.75rem;
   overflow: hidden;
   display: flex;

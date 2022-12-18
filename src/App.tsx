@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { fetchTrendings, selectTrending } from "./slices/trending";
@@ -8,6 +8,7 @@ import QuestionList from "./components/QuestionList";
 import { fetchQuestions } from "./slices/question";
 import SearchBar from "./components/SearchBar";
 import Loading from "./components/Loading";
+import { device } from "./styles/media";
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,7 +22,9 @@ function App() {
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 50 >=
-      document.documentElement.offsetHeight && !question.loading && !question.isEnd
+        document.documentElement.offsetHeight &&
+      !question.loading &&
+      !question.isEnd
     ) {
       dispatch(fetchQuestions(question.tag));
     }
@@ -33,7 +36,7 @@ function App() {
   }, [handleScroll]);
 
   return (
-    <div>
+    <SCConatiner>
       <main>
         <SCFixedHolder>
           <SearchBar
@@ -72,9 +75,19 @@ function App() {
           {question.loading && <Loading />}
         </SCSection>
       </main>
-    </div>
+    </SCConatiner>
   );
 }
+
+const SCConatiner = styled.div`
+  padding: 0 1.25rem;
+
+  ${device.laptop} {
+    padding: 0;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+`;
 
 const SCSection = styled.section`
   display: flex;
@@ -102,12 +115,25 @@ const SCSection = styled.section`
 `;
 
 const SCFixedHolder = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 
   > div {
     position: fixed;
-    top: 0;
+    display: flex;
+    top: 10px;
     left: 0;
+    margin: 0 20px;
+    width: calc(100% - 40px);
+  }
+
+  ${device.laptop} {
+    margin-bottom: 80px;
+
+    > div {
+      left: 10%;
+      width: 80%;
+      margin: 0;
+    }
   }
 `;
 

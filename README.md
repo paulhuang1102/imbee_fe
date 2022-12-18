@@ -36,7 +36,7 @@ accordingly.
 2. Please prepare a setup guide on how to kickstart your application.
 ### Bouns
 1. - [x] Use redux for development
-2. - [] Use responsive design
+2. - [x] Use responsive design
 3. - [x] Show loading spinner when fetching data
 4. - [x] Add animations
 5. - [x] Any functions/features you see fit into the use case.
